@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import tjeit.kr.deliveryserverpractice.datas.User;
+import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class MainActivity extends BaseActivity {
 
@@ -45,7 +46,7 @@ public class MainActivity extends BaseActivity {
     }
 
     void getNoticesFromServer() {
-
+        ConnectServer.getRequestNotice(mContext, null);
     }
 
     @Override
