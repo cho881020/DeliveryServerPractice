@@ -1,8 +1,20 @@
 package tjeit.kr.deliveryserverpractice.utils;
 
 import android.content.Context;
+import android.util.Log;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 // 서버와 통신하는 코드들을 모아두는 클래스.
 public class ConnectServer {
@@ -26,7 +38,47 @@ public class ConnectServer {
                                          String user_id, String password,
                                          final JsonResponseHandler handler) {
 
-        
+//        우리가 만드는 앱을 클라이언트로 활용
+        OkHttpClient client = new OkHttpClient();
+
+//        POST 메쏘드는 FormBody에 필요 데이터를 첨부.
+        RequestBody requestBody = new FormBody.Builder()
+                .add("user_id", user_id)
+                .add("password", password)
+                .build();
+
+//        요청 자체를 생성. Request
+
+        Request request = new Request.Builder()
+                .url(serverURL + "auth")
+                .post(requestBody)
+                .build();
+
+
+//        client를 이용해 실제로 서버에 접근
+//        newCall 뒤로는 서버가 돌려주는 response에 대한 처리.
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("서버연결실패", e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String body = response.body().string();
+                try {
+                    JSONObject jsonObject = new JSONObject(body);
+                    if (handler != null) {
+                        handler.onResponse(jsonObject);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 
     }
