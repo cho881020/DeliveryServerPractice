@@ -9,6 +9,7 @@
     android:gravity="center_horizontal">
 
     <LinearLayout
+        android:id="@+id/firstNoticeLayout"
         android:background="@color/lightNavy"
         android:gravity="center_vertical"
         android:padding="15dp"
