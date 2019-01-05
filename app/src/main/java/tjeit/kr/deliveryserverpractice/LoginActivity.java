@@ -57,17 +57,36 @@ public class LoginActivity extends BaseActivity {
                                 Log.d("로그인서버응답", json.toString());
 
                                 try {
-                                    JSONObject data = json.getJSONObject("data");
-                                    JSONObject user = data.getJSONObject("user");
 
-                                    final User loginUser = User.getUserFromJson(user);
+                                    int code = json.getInt("code");
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(mContext, loginUser.getName()+"님이 로그인 했습니다.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                    if (code == 200) {
+                                        JSONObject data = json.getJSONObject("data");
+                                        JSONObject user = data.getJSONObject("user");
+
+                                        final User loginUser = User.getUserFromJson(user);
+
+                                        Intent intent = new Intent(mContext, MainActivity.class);
+                                        intent.putExtra("로그인한사람", loginUser);
+                                        startActivity(intent);
+
+                                    }
+                                    else {
+                                        String message = json.getString("message");
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+
+
+
+
+
+
 
 
                                 } catch (JSONException e) {
