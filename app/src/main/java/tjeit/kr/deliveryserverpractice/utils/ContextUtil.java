@@ -2,7 +2,6 @@ package tjeit.kr.deliveryserverpractice.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 public class ContextUtil {
 

@@ -67,6 +67,7 @@ public class LoginActivity extends BaseActivity {
 
                                         String token = data.getString("token");
                                         ContextUtil.setToken(mContext, token);
+
                                         final User loginUser = User.getUserFromJson(user);
 
                                         Intent intent = new Intent(mContext, MainActivity.class);

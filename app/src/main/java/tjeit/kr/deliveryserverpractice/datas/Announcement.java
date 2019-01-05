@@ -15,7 +15,7 @@ public class Announcement implements Serializable {
 
 //    JSON -> 클래스 객체 리턴 메쏘드 (실질적 파싱)
 
-    public static Announcement getAnnouncementFromJason (JSONObject json) {
+    public static Announcement getAnnouncementFromJson(JSONObject json) {
         Announcement announcement = new Announcement();
 
         try {
@@ -23,15 +23,13 @@ public class Announcement implements Serializable {
             announcement.setTitle(json.getString("title"));
             announcement.setContent(json.getString("content"));
 
-//            TODO : 작성 일시를 받아서 Calendar
+//            TODO : 작성 일시를 받아서 Calendar에 세팅.
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
         return announcement;
     }
-
 
     public int getId() {
         return id;

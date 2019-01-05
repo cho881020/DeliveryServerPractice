@@ -143,6 +143,7 @@ public class ConnectServer {
         OkHttpClient client = new OkHttpClient();
 
 //        이번에 사용하는 메쏘드는 GET
+
         HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL+"announcement").newBuilder();
 //        urlBuilder.addEncodedQueryParameter("from", "2018-01-01");
 //        urlBuilder.addEncodedQueryParameter("to", "2018-12-31");
@@ -150,11 +151,15 @@ public class ConnectServer {
         String requestUrl = urlBuilder.build().toString();
         Log.d("요청URL", requestUrl);
 
-        Request request = new Request.Builder().header("X-Http-Token", ContextUtil.getToken(context)).url(requestUrl).build();
+        Request request = new Request.Builder()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .url(requestUrl)
+                .build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
             }
 
             @Override
@@ -166,12 +171,17 @@ public class ConnectServer {
                     if (handler != null) {
                         handler.onResponse(json);
                     }
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
         });
+
+
+
 
     }
 
