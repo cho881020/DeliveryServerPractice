@@ -40,6 +40,13 @@ public class User implements Serializable {
             user.setAddress(json.getString("address"));
             user.setProfile_image(json.getString("profile_image"));
 
+            Bank userbank = Bank.getBankFromJson(json.getJSONObject("bank_code"));
+
+            user.setBank(userbank);
+
+
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();

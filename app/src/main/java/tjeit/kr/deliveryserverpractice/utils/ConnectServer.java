@@ -24,11 +24,14 @@ public class ConnectServer {
 //    서버의 주소url을 변수로 보관.
     private final static String serverURL = "http://13.124.249.254/";
 
-//    서버 통신은 이 ConnectSErver 클래스가 전담.
+    public static void putRequestSignUp(Context mContext, String s, String s1, String s2, String s3, String s4, String s5, String s6, String 임시이미지, JsonResponseHandler handler) {
+    }
+
+    //    서버 통신은 이 ConnectSErver 클래스가 전담.
 //    응답이 돌아온 후의 데이터 반영 : Activity들이 처리
 //    응답을 Activity단으로 넘겨주기 위한 조치.
     public interface JsonResponseHandler {
-        void onResponse(JSONObject json);
+        void onResponse(JSONObject json) throws JSONException;
     }
 
 //    로그인 기능 처리 메쏘드
