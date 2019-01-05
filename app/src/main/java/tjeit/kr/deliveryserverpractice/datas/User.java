@@ -38,6 +38,12 @@ public class User implements Serializable {
             user.setLongitude(json.getDouble("longitude"));
             user.setAddress(json.getString("address"));
             user.setProfile_image(json.getString("profile_image"));
+
+//            Bank 같은 데이터 클래스를 세팅
+//            JSON -> Bank 클래스를 추출 -> Bank 클래스에 작성
+            Bank userBank = Bank.getBankFromJson(json.getJSONObject("bank_code"));
+            user.setBank(userBank);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
