@@ -6,9 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import tjeit.kr.deliveryserverpractice.datas.User;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class LoginActivity extends BaseActivity {
@@ -52,6 +55,28 @@ public class LoginActivity extends BaseActivity {
                             public void onResponse(JSONObject json) {
 //                                서버에서 돌려주는 응답 처리.
                                 Log.d("로그인서버응답", json.toString());
+
+                                try {
+                                    JSONObject data = json.getJSONObject("data");
+                                    JSONObject user = data.getJSONObject("user");
+
+                                    final User loginUser = User.getUserFromJson(user);
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(mContext, loginUser.getName()+"님이 로그인했습니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+//                                User loginUser = User.getUserFromJson()
+
+
+
                             }
                         });
 
