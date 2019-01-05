@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity {
                             @Override
                             public void onResponse(JSONObject json) {
 //                                서버에서 돌려주는 응답 처리.
-                                Log.d("로그인 서버응답",json.toString());
+                                Log.d("로그인서버응답",json.toString());
                             }
                         });
             }
