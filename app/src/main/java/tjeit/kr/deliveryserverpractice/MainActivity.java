@@ -3,6 +3,8 @@ package tjeit.kr.deliveryserverpractice;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import tjeit.kr.deliveryserverpractice.datas.User;
 
@@ -35,7 +37,9 @@ public class MainActivity extends BaseActivity {
 
         welcomeMsgTxt.setText(welcomeMessage);
 
-    }
+        Glide.with(mContext).load(mUser.getProfile_image()).into(profileImgView);
+
+}
 
     @Override
     public void bindViews() {
