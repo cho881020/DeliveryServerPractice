@@ -26,6 +26,7 @@ public class ConnectServer {
     //3. JsonResponseHandler handler : 응답을 받으면 화면에서 처리할 코드 덩어리.
     public static void postRequestLogin(Context context,
                                         String user_id, String password,final JsonResponseHandler handler){
-        
+
+
     }
 }
