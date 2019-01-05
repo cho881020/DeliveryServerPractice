@@ -6,6 +6,8 @@ import android.content.Context;
 
 import org.json.JSONObject;
 
+import okhttp3.OkHttpClient;
+
 public class ConnectServer {
 
 //    서버통신은 대부분 하나의 서버에 요청을 날림.
@@ -26,7 +28,7 @@ public class ConnectServer {
 //        3)jsonRexpinseHadler handler : 응답을 받으면 화면에서 처리할 코드 덩어리.
 
     public static void postRequestLogin(Context context, String user_id, String password, final JsonResponseHandler handler){
-
+//        OkHttpClient client = new OkHttpClient()
     }
 
 
