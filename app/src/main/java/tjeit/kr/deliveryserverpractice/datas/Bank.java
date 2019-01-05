@@ -1,5 +1,8 @@
 package tjeit.kr.deliveryserverpractice.datas;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Bank implements Serializable {
@@ -9,6 +12,22 @@ public class Bank implements Serializable {
     private String name;
     private String logo;
 
+
+    public static Bank getBankFromJson(JSONObject json) {
+        Bank bank = new Bank();
+
+        try {
+            bank.setId(json.getInt("id"));
+            bank.setCode(json.getString("code"));
+            bank.setName(json.getString("name"));
+            bank.setLogo(json.getString("logo"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return bank;
+    }
 
 
     public int getId() {
