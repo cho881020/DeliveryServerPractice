@@ -103,8 +103,8 @@ public class ConnectServer  {
                                         String name,
                                         String phone,
                                         String email,
-                                        String biling_bank,
-                                        String biling_account,
+                                        String billing_bank,
+                                        String billing_account,
                                         String profile_image,
                                         final JsonResponseHandler handler){
         OkHttpClient client = new OkHttpClient();
@@ -115,8 +115,8 @@ public class ConnectServer  {
                 .add("name",name)
                 .add("phone", phone)
                 .add("email",email)
-                .add("biling_bank", biling_bank)
-                .add("biling_account",biling_account)
+                .add("billing_bank", billing_bank)
+                .add("billing_account",billing_account)
                 .add("profile_image",profile_image)
                 .add("type","WORKER")
                 .build();
