@@ -12,6 +12,7 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -129,4 +130,43 @@ public class ConnectServer {
         });
     }
 
-}
+    public static void getRequestNotice(Context context, final JsonResponseHandler handler){
+        OkHttpClient client = new OkHttpClient();
+
+        //이번에 사용하는 메쏘드 GET
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL+"announcement").newBuilder();
+        //urlBuilder.addEncodedQueryParameter("from","2018-01-01");
+        //urlBuilder.addEncodedQueryParameter("to","2018-12-31");
+
+        String requestUrl = urlBuilder.build().toString();
+        Log.d("요청URL",requestUrl);
+
+        Request request = new Request.Builder()
+                .header("X-Http-Token",ContextUtil.getToken(context))
+                .url(requestUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String body = response.body().string();
+                try {
+                    JSONObject json = new JSONObject(body);
+                    if(handler != null){
+                        handler.onResponse(json);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    }
+
+

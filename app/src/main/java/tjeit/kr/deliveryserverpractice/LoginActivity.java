@@ -1,15 +1,20 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import tjeit.kr.deliveryserverpractice.datas.User;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
+import tjeit.kr.deliveryserverpractice.utils.ContextUtil;
 
 public class LoginActivity extends BaseActivity {
 
@@ -51,7 +56,42 @@ public class LoginActivity extends BaseActivity {
                             @Override
                             public void onResponse(JSONObject json) {
                                 //서버에서 돌려주는 응답 처리
-                                Log.d("로그인서버 응답",json.toString());
+                                Log.d("로그인서버 응답", json.toString());
+
+                                try {
+
+                                    int code = json.getInt("code");
+
+                                    if ( code == 200){
+                                        JSONObject data = json.getJSONObject("data");
+                                        JSONObject user = data.getJSONObject("user");
+
+                                        String token = data.getString("token");
+                                        ContextUtil.setToken(mContext,token);
+                                        final User loginUser = User.getUserFromJson(user);
+
+                                        Intent intent = new Intent(mContext, MainActivity.class);
+                                        intent.putExtra("로그인한사람",loginUser);
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        final String message = json.getString("message");
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(mContext,message, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+
+
+
+
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
             }
