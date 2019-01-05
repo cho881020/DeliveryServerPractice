@@ -1,7 +1,10 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private de.hdodenhof.circleimageview.CircleImageView profileImgView;
     private android.widget.TextView welcomeMsgTxt;
     private TextView announcementTxt;
+    private android.widget.LinearLayout firstNoticeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        firstNoticeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NoticeListActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -95,6 +107,7 @@ public class MainActivity extends BaseActivity {
 
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
         this.profileImgView = (CircleImageView) findViewById(R.id.profileImgView);
+        this.firstNoticeLayout = (LinearLayout) findViewById(R.id.firstNoticeLayout);
         this.announcementTxt = (TextView) findViewById(R.id.announcementTxt);
 
     }
