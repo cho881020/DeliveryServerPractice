@@ -73,7 +73,7 @@ public class LoginActivity extends BaseActivity {
 
                                     }
                                     else {
-                                        String message = json.getString("message");
+                                        final String message = json.getString("message");
 
                                         runOnUiThread(new Runnable() {
                                             @Override
@@ -81,8 +81,8 @@ public class LoginActivity extends BaseActivity {
                                                 Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
                                             }
                                         });
-                                    }
 
+                                    }
 
 
 

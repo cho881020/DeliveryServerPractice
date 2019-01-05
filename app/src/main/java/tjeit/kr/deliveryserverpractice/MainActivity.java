@@ -44,11 +44,12 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    void getNoticesFromServer ()
+    void getNoticesFromServer() {
+
+    }
 
     @Override
     public void bindViews() {
-
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
         this.profileImgView = (CircleImageView) findViewById(R.id.profileImgView);
 
