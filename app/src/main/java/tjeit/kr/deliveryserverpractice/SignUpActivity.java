@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import tjeit.kr.deliveryserverpractice.utils.ConnectSever;
+
 public class SignUpActivity extends BaseActivity {
 
     private android.widget.EditText userIdEdt;
@@ -29,6 +31,8 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 //                서버에 회원가입 신청 요청.
+
+
             }
         });
     }
