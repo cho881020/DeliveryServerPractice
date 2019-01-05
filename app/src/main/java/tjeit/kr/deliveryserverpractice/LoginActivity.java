@@ -1,5 +1,6 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,12 +29,21 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                로그인 버튼이 눌리면?
 //                서버에 아이디 비번을 들고 /auth로 접속해서 로그인 결과 물어보기.
-                ConnectServer.postRequestLoign(mContext, userIdEdt.getText().toString(),
+                ConnectServer.postRequestLogin(mContext, userIdEdt.getText().toString(),
                         passwordEdt.getText().toString(), new ConnectServer.JsonResponseHandler() {
                             @Override
                             public void onResponse(JSONObject json) {

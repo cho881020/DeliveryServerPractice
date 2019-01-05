@@ -34,7 +34,7 @@ public class ConnectServer {
 //    1) Context context : 어느 화면에서 쓰이는지.
 //    2) user_id, password : 서버에서 요구하는 데이터들(파라미터들)
 //    3) JsonResponseHandler handler : 응답을 받으면 화면에서 처리할 코드 덩어리.
-    public static void postRequestLoign (Context context, String user_id,
+    public static void postRequestLogin (Context context, String user_id,
                                          String password, final JsonResponseHandler handler){
 
 //        우리가 만드는 맵을 클라이언트로 활용

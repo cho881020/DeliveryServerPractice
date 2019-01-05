@@ -1,9 +1,14 @@
 package tjeit.kr.deliveryserverpractice;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.json.JSONObject;
+
+import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class SignUpActivity extends BaseActivity {
 
@@ -30,7 +35,16 @@ public class SignUpActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 //                서버에 회원가입을 신청 요청.
-
+                ConnectServer.putRequestSignUp(mContext, userIdEdt.getText().toString(),
+                        passwordEdt.getText().toString(), nameEdt.getText().toString(),
+                        phoneEdt.getText().toString(), emailEdt.getText().toString(),
+                        "3", "123-45678-90", "임시이미지",
+                        new ConnectServer.JsonResponseHandler() {
+                            @Override
+                            public void onResponse(JSONObject json) {
+                                Log.d("회원가입응답", json.toString());
+                            }
+                        });
             }
         });
 
