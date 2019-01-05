@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/firstNoticeLayout"
         android:background="@color/lightNavy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

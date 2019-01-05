@@ -1,7 +1,11 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -26,6 +30,7 @@ public class MainActivity extends BaseActivity {
     private de.hdodenhof.circleimageview.CircleImageView profileImageView;
     private android.widget.TextView welcomeMsgTxt;
     private TextView announcementTxt;
+    private android.widget.LinearLayout firstNoticeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+        firstNoticeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NoticeListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         mUser = (User) getIntent().getSerializableExtra("로그인한사람");
         String welcomMessage = String.format("%s님,\n오늘도 힘내주세요!",mUser.getName());
         welcomeMsgTxt.setText(welcomMessage);
@@ -86,6 +101,7 @@ public class MainActivity extends BaseActivity {
     public void bindViews() {
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
         this.profileImageView = (CircleImageView) findViewById(R.id.profileImageView);
+        this.firstNoticeLayout = (LinearLayout) findViewById(R.id.firstNoticeLayout);
         this.announcementTxt = (TextView) findViewById(R.id.announcementTxt);
 
     }
