@@ -14,6 +14,7 @@
         android:text="아이디"/>
 
     <EditText
+        android:id="@+id/userIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="아이디를 입력하세요."/>
@@ -24,6 +25,7 @@
         android:text="비밀번호"/>
 
     <EditText
+        android:id="@+id/passwordEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호를 입력하세요."/>
@@ -34,6 +36,7 @@
         android:text="이름"/>
 
     <EditText
+        android:id="@+id/nameEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이름을 입력하세요."/>
@@ -44,6 +47,7 @@
         android:text="폰번"/>
 
     <EditText
+        android:id="@+id/phoneEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="폰번을 입력하세요. (010-1234-5678)"/>
@@ -54,6 +58,7 @@
         android:text="이메일"/>
 
     <EditText
+        android:id="@+id/emailEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이메일을 입력하세요."/>
@@ -64,9 +69,9 @@
         android:layout_weight="1"/>
 
     <Button
+        android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="회원가입"/>
-
 
 </LinearLayout>
