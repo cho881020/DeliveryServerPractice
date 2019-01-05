@@ -1,5 +1,6 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 
 import tjeit.kr.deliveryserverpractice.datas.User;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
+import tjeit.kr.deliveryserverpractice.utils.ContextUtil;
 
 public class LoginActivity extends BaseActivity {
 
@@ -70,6 +72,11 @@ public class LoginActivity extends BaseActivity {
 
                                         JSONObject data = json.getJSONObject("data");
                                         JSONObject user = data.getJSONObject("user");
+
+
+                                        String token = data.getString("token");
+                                        ContextUtil.setToken(mContext, token);
+
 
                                         final User loginUser = User.getUserFromJson(user);
 
