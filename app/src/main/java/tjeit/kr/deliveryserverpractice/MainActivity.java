@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         bindViews();
         setupEvents();
-        setValues();K
+        setValues();
     }
 
     @Override
@@ -39,7 +39,12 @@ public class MainActivity extends BaseActivity {
 
         Glide.with(mContext).load(mUser.getProfile_image()).into(profileImgView);
 
+//        서버에서 공지사항 받아오기
+        getNoticesFromServer();
+
     }
+
+    void getNoticesFromServer ()
 
     @Override
     public void bindViews() {

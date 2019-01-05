@@ -137,6 +137,10 @@ public class ConnectServer {
 
     }
 
+    public static void getRequestNotice(Context context, final JsonResponseHandler handler) {
+
+    }
+
 }
 
 
