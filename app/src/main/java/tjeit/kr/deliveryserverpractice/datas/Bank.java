@@ -13,18 +13,21 @@ public class Bank implements Serializable {
     private String logo;
 
 
-    public static Bank getBankFromJson(JSONObject json) throws JSONException {
+    public static Bank getBankFromJson(JSONObject json) {
         Bank bank = new Bank();
 
+        try {
+            bank.setId(json.getInt("id"));
+            bank.setCode(json.getString("code"));
+            bank.setName(json.getString("name"));
+            bank.setLogo(json.getString("logo"));
 
-        bank.setId(json.getInt("id"));
-        bank.setCode(json.getString("code"));
-        bank.setName(json.getString("name"));
-        bank.setLogo(json.getString("logo"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        return  bank;
+        return bank;
     }
-
 
 
     public int getId() {

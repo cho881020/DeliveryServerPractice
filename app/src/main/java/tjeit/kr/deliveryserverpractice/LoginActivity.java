@@ -19,7 +19,7 @@ public class LoginActivity extends BaseActivity {
     private android.widget.EditText userIdEdt;
     private android.widget.EditText passwordEdt;
     private android.widget.Button signUpBtn;
-    private android.widget.Button loginBtn;`
+    private android.widget.Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,25 +52,30 @@ public class LoginActivity extends BaseActivity {
                         passwordEdt.getText().toString(),
                         new ConnectServer.JsonResponseHandler() {
                             @Override
-                            public void onResponse(JSONObject json) throws JSONException {
+                            public void onResponse(JSONObject json) {
 //                                서버에서 돌려주는 응답 처리.
                                 Log.d("로그인서버응답", json.toString());
 
-                                JSONObject data = json.getJSONObject("data");
-                                JSONObject user = data.getJSONObject("user");
-                                final User loginUser = User.getUserFromJson(user);
+                                try {
+                                    JSONObject data = json.getJSONObject("data");
+                                    JSONObject user = data.getJSONObject("user");
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(mContext,  loginUser.getName()+"님이 로그인 하였습니다.", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                    final User loginUser = User.getUserFromJson(user);
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(mContext, loginUser.getName()+"님이 로그인 했습니다.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
 
 
-
-//                                User loginUser = new
                             }
                         });
 

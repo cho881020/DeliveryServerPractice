@@ -40,13 +40,11 @@ public class User implements Serializable {
             user.setAddress(json.getString("address"));
             user.setProfile_image(json.getString("profile_image"));
 
-            Bank userbank = Bank.getBankFromJson(json.getJSONObject("bank_code"));
+//            Bank 같은 데이터클래스를 세팅
+//            JSON -> Bank 클래스 추출 => Bank 클래스에 작성
 
-            user.setBank(userbank);
-
-
-
-
+            Bank userBank = Bank.getBankFromJson(json.getJSONObject("bank_code"));
+            user.setBank(userBank);
 
         } catch (JSONException e) {
             e.printStackTrace();
