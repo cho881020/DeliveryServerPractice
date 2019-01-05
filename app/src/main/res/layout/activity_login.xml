@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".LoginActivity"
     android:background="@color/mainColor">
 
     <LinearLayout
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="25dp">
+        android:gravity="center">
 
         <ImageView
             android:layout_width="72dp"
             android:layout_height="28dp"
-            android:src="@mipmap/ic_launcher"
-            />
+            android:src="@mipmap/ic_launcher"/>
+
         <ImageView
             android:layout_width="52dp"
             android:layout_height="15dp"
             android:src="@mipmap/ic_launcher"/>
-
 
     </LinearLayout>
 
@@ -46,9 +46,10 @@
             android:id="@+id/userIdEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디를 입력하세요"
+            android:hint="아이디를 입력하세요."
             android:textColor="@color/white"
             android:textColorHint="@color/liteGray"/>
+
 
         <TextView
             android:layout_marginTop="10dp"
@@ -62,9 +63,10 @@
             android:id="@+id/passwordEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호를 입력하세요"
+            android:hint="비밀번호를 입력하세요."
             android:textColor="@color/white"
             android:textColorHint="@color/liteGray"/>
+
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -87,8 +89,8 @@
                 android:text="로그인"/>
 
 
-
         </LinearLayout>
+
 
     </LinearLayout>
 
