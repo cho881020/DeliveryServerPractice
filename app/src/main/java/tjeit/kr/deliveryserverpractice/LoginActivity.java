@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import tjeit.kr.deliveryserverpractice.datas.User;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
+import tjeit.kr.deliveryserverpractice.utils.ContextUtil;
 
 public class LoginActivity extends BaseActivity {
 
@@ -62,6 +63,7 @@ public class LoginActivity extends BaseActivity {
                                         JSONObject user = data.getJSONObject("user");
 
                                         String token = data.getString("token");
+                                        ContextUtil.setToken(mContext, token);
 
                                         final User loginUser = User.getUserFromJson(user);
 
