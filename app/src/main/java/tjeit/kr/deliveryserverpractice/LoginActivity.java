@@ -61,6 +61,8 @@ public class LoginActivity extends BaseActivity {
                                         JSONObject data = json.getJSONObject("data");
                                         JSONObject user = data.getJSONObject("user");
 
+                                        String token = data.getString("token");
+
                                         final User loginUser = User.getUserFromJson(user);
 
                                         Intent intent = new Intent(mContext, MainActivity.class);
