@@ -97,6 +97,67 @@ public class ConnectServer  {
 
     }
 
+    public static void putRequestSignUp(Context context,
+                                        String user_id ,
+                                        String password,
+                                        String name,
+                                        String phone,
+                                        String email,
+                                        String biling_bank,
+                                        String biling_account,
+                                        String profile_image,
+                                        final JsonResponseHandler handler){
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("user_id",user_id)
+                .add("password",password)
+                .add("name",name)
+                .add("phone", phone)
+                .add("email",email)
+                .add("biling_bank", biling_bank)
+                .add("biling_account",biling_account)
+                .add("profile_image",profile_image)
+                .add("type","WORKER")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(serverURL+"auth")
+                .put(requestBody)
+                .build();
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+
+                String body = response.body().string();
+                try {
+                    JSONObject json = new JSONObject(body);
+                    if (handler != null){
+
+                        handler.onResponse(json);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
+    }
+
 
 
 }
