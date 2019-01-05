@@ -1,7 +1,10 @@
 package tjeit.kr.deliveryserverpractice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import tjeit.kr.deliveryserverpractice.adapters.NoticeAdapter;
 import tjeit.kr.deliveryserverpractice.datas.Announcement;
 import tjeit.kr.deliveryserverpractice.datas.User;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
@@ -25,11 +29,13 @@ public class MainActivity extends BaseActivity {
     private de.hdodenhof.circleimageview.CircleImageView profileImageView;
     private android.widget.TextView welcomeMsgTxt;
     private TextView announcementTxt;
+    private android.widget.LinearLayout firstNoticeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         bindViews();
@@ -41,6 +47,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        firstNoticeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NoticeListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -92,6 +105,7 @@ public class MainActivity extends BaseActivity {
     public void bindViews() {
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
         this.profileImageView = (CircleImageView) findViewById(R.id.profileImageView);
+        this.firstNoticeLayout = (LinearLayout) findViewById(R.id.firstNoticeLayout);
         this.announcementTxt = (TextView) findViewById(R.id.announcementTxt);
     }
 }
