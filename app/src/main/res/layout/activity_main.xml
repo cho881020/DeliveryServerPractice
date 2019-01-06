@@ -95,13 +95,35 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <Button
-        android:id="@+id/editProfileBtn"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/darkNavy"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:text="프로필 설정"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/editProfileBtn"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@color/darkNavy"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:text="프로필 설정"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/apartBtn"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@color/darkNavy"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:text="아파트 목록"
+            android:layout_weight="1"/>
+
+
+
+
+    </LinearLayout>
 
 </LinearLayout>
