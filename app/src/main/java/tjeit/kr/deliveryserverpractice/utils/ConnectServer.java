@@ -119,6 +119,44 @@ public class ConnectServer {
         Request request = new Request.Builder().header("X-Http-Token", ContextUtil.getToken(context))
                 .url(requestUrl).build();
 
+//        거의 복붙
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+                    if(handler != null){
+                        handler.onResponse(json);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public static void getRequestBank(Context context, final  JsonResponseHandler handler){
+        OkHttpClient client = new OkHttpClient();
+
+//        이번에 사용하는 메소드는 GET
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL + "info/bank").newBuilder();
+//        urlBuilder.addEncodedQueryParameter("from","2018-01-01");
+//        urlBuilder.addEncodedQueryParameter("to","2018-12-31");
+
+        String requestUrl = urlBuilder.build().toString();
+        Log.d("요청URL", requestUrl);
+
+        Request request = new Request.Builder()
+                .url(requestUrl).build();
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
