@@ -12,11 +12,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import tjeit.kr.deliveryserverpractice.adapters.BankSpinnerAdapter;
 import tjeit.kr.deliveryserverpractice.datas.Bank;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class EditProfileActivity extends BaseActivity {
-
+    BankSpinnerAdapter mBankSpinnerAdapter;
     List<Bank> bankList = new ArrayList<Bank>();
 
     private android.widget.Spinner bankSpinner;
@@ -40,7 +41,13 @@ public class EditProfileActivity extends BaseActivity {
     public void setValues() {
 //        서버에서 은행 목록을 받아와서 Spinner에 뿌려주기.
         getBankFromServer();
+
+        mBankSpinnerAdapter = new BankSpinnerAdapter(mContext, bankList);
+        bankSpinner.setAdapter(mBankSpinnerAdapter);
+
     }
+
+
 
     void getBankFromServer () {
         ConnectServer.getRequestBank(mContext, new ConnectServer.JsonResponseHandler() {
