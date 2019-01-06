@@ -15,11 +15,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tjeit.kr.deliveryserverpractice.datas.Apartment;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class ApartListActivity extends BaseActivity {
 
+    List<Apartment> apartmentList = new ArrayList<Apartment>();
 
 
     MapFragment mapFragment;
@@ -46,7 +50,7 @@ public class ApartListActivity extends BaseActivity {
 
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
+            public void onMapReady(final GoogleMap googleMap) {
 
 
 //                서버에서 제공하는 아파트 목록들을 모두 마커로 추가
@@ -54,25 +58,46 @@ public class ApartListActivity extends BaseActivity {
                 ConnectServer.getRequestApartments(mContext, new ConnectServer.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
-                        Log.d("아파트목록",json.toString());
+                        Log.d("아파트목록", json.toString());
 
                         try {
                             int code = json.getInt("code");
-                            if (code == 200){
+                            if (code == 200) {
 
                                 JSONObject data = json.getJSONObject("data");
                                 JSONArray apartment_list = data.getJSONArray("apartment_list");
 
-                                for (int i =0 ; i < apartment_list.length(); i++){
+                                for (int i = 0; i < apartment_list.length(); i++) {
 
                                     JSONObject apartJson = apartment_list.getJSONObject(i);
 //                                    apartJson => Apartment클래스로 변환.
 
                                     Apartment ap = Apartment.getApartmentFromJson(apartJson);
 
+                                    apartmentList.add(ap);
 
 
                                 }
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        //           for문의 다른형태
+//                                아파트의 좌표를 만들고 , 이를 지도에 마커로 표시
+                                        for (Apartment apartment : apartmentList) {
+
+                                            LatLng latLng = new LatLng(apartment.getLatitude(), apartment.getLongitude());
+                                            MarkerOptions markerOptions = new MarkerOptions();
+                                            markerOptions.position(latLng);
+                                            markerOptions.title(apartment.getName());
+
+                                            googleMap.addMarker(markerOptions);
+
+                                        }
+                                    }
+                                });
+
 
                             }
 
@@ -94,15 +119,13 @@ public class ApartListActivity extends BaseActivity {
 //                googleMap.addMarker(markerOptions);
 
 
-
 //                지도의 가운데점을 서울로 미리 세팅
-                LatLng seoul = new LatLng(37.56,126.97);
+                LatLng seoul = new LatLng(37.56, 126.97);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul));
 
 //               지도의 줌 레벨을 세팅
 
                 googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
 
 
             }
