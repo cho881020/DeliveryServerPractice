@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDpJuCyJQakf3WVvIXfRhBmMjO_X2y-WwY" />
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +25,7 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".NoticeListActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
 
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
@@ -29,6 +33,7 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".ApartListActivity"></activity>
     </application>
 
 </manifest>
