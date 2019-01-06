@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tjeit.kr.deliveryserverpractice.datas.Apartment;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class ApartListActivity extends BaseActivity {
@@ -58,6 +59,9 @@ public class ApartListActivity extends BaseActivity {
                                 for (int i=0 ; i < apartment_list.length() ; i++) {
                                     JSONObject apartJson = apartment_list.getJSONObject(i);
 //                                    apartJson => Apartment클래스로 변환.
+
+                                    Apartment ap = Apartment.getApartmentFromJson(apartJson);
+
                                 }
 
                             }
