@@ -85,6 +85,7 @@
             android:gravity="center"
             android:text="김성현님,\n오늘도 힘내주세요!"/>
 
+
     </LinearLayout>
 
     <TextView
@@ -95,7 +96,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/editProfileBtn"
             android:layout_width="0dp"

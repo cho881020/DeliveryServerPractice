@@ -4,6 +4,8 @@ package tjeit.kr.deliveryserverpractice;
 import android.app.FragmentManager;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,8 +46,11 @@ public class ApartListActivity extends BaseActivity {
                 markerOptions.snippet("한국의 수도입니다.");
                 googleMap.addMarker(markerOptions);
 
-//                서울로 지도를 미리 세팅.
+//                지도의 가운대점을 서울로 미리 세팅
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul));
 
+//                지도의 춤 레벨을 세팅
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(13));
             }
         });
 
