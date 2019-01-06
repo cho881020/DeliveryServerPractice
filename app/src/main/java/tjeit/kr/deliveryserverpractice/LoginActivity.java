@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +31,8 @@ public class LoginActivity extends BaseActivity {
         bindViews();
         setupEvents();
         setValues();
+
+        Log.d("토큰값", FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override
