@@ -17,11 +17,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tjeit.kr.deliveryserverpractice.datas.Apartment;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class ApartListActivity extends BaseActivity {
 
+    List<Apartment> apartmentList = new ArrayList<Apartment>();
     MapFragment mapFragment;
 
     @Override
@@ -43,7 +47,7 @@ public class ApartListActivity extends BaseActivity {
     public void setValues() {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
+            public void onMapReady(final GoogleMap googleMap) {
 //                서버에서 제공하는 아파드 목록을 모두 마커로 추가
                 ConnectServer.getRequestApartments(mContext, new ConnectServer.JsonResponseHandler() {
                     @Override
@@ -59,8 +63,28 @@ public class ApartListActivity extends BaseActivity {
                                 for(int i = 0 ; i < apartment_list.length(); i++){
                                     JSONObject apartJson = apartment_list.getJSONObject(i);
 //                                    apartJson => Apartment클래스로 변환.
-                                    Apartment an = Apartment.getApartmentFromJson(apartJson);
+                                    Apartment ap = Apartment.getApartmentFromJson(apartJson);
+                                    apartmentList.add(ap);
                                 }
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+//                                for문의 다른 형태
+//                                아파트의 좌표를 만들고, 이를 지도에 마커로 표시
+                                        for (Apartment apartment : apartmentList) {
+                                            LatLng latLng = new LatLng(apartment.getLatitude(), apartment.getLongitude());
+
+                                            MarkerOptions markerOptions = new MarkerOptions();
+                                            markerOptions.position(latLng);
+                                            markerOptions.title(apartment.getName());
+
+                                            googleMap.addMarker(markerOptions);
+
+                                        }
+                                    }
+                                });
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
