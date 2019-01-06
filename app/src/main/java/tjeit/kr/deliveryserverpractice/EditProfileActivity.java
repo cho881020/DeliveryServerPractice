@@ -66,6 +66,7 @@ public class EditProfileActivity extends BaseActivity {
 
                             bankList.add(bank);
 
+
                         }
 
                     }
