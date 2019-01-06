@@ -99,8 +99,14 @@ public class MainActivity extends BaseActivity {
                             announcementList.add(an);
                         }
 
-                        Announcement firstAn = announcementList.get(0);
-                        announcementTxt.setText(firstAn.getTitle());
+                        final Announcement firstAn = announcementList.get(0);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                announcementTxt.setText(firstAn.getTitle());
+                            }
+                        });
+
 
 
                     }

@@ -60,7 +60,14 @@ public class NoticeListActivity extends BaseActivity {
                             announcementList.add(an);
                         }
 
-                        mAdapter.notifyDataSetChanged();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+
+
 
 
                     }
