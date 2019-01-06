@@ -1,8 +1,16 @@
 package tjeit.kr.deliveryserverpractice;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import tjeit.kr.deliveryserverpractice.datas.Bank;
+import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class EditProfileActivity extends BaseActivity {
 
@@ -26,7 +34,31 @@ public class EditProfileActivity extends BaseActivity {
     @Override
     public void setValues() {
 //        서버에서 은행 목록을 받아와서 Spinner에 뿌려주기.
+        getBankFromServer();
+    }
 
+    void getBankFromServer () {
+        ConnectServer.getRequestBank(mContext, new ConnectServer.JsonResponseHandler() {
+            @Override
+            public void onResponse(JSONObject json) {
+                Log.d("은행응답", json.toString());
+
+                try {
+                    int code = json.getInt("code");
+                    if (code == 200) {
+                        JSONObject data = json.getJSONObject("data");
+                        JSONArray banks = data.getJSONArray("banks");
+
+                        for (int i = 0; i<banks.length(); i++) {
+                            JSONObject bankJson = banks.getJSONObject(i);
+                            Bank bank =  Bank.getBankFromJson(bankJson);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

@@ -188,7 +188,7 @@ public class ConnectServer {
 
 //        이번에 사용하는 메쏘드는 GET
 
-            HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL+"info/bank").newBuilder();
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL + "info/bank").newBuilder();
 //        urlBuilder.addEncodedQueryParameter("from", "2018-01-01");
 //        urlBuilder.addEncodedQueryParameter("to", "2018-12-31");
 
@@ -224,7 +224,7 @@ public class ConnectServer {
             });
 
 
-
+        }
 
 
 }
