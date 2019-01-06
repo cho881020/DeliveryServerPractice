@@ -56,6 +56,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(mContext, EditProfileActivity.class);
+                startActivity(intent);
+
             }
         });
 
