@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private android.widget.TextView welcomeMsgTxt;
     private TextView announcementTxt;
     private android.widget.LinearLayout firstNoticeLayout;
+    private android.widget.Button editProfileBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         firstNoticeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +119,7 @@ public class MainActivity extends BaseActivity {
         this.profileImgView = (CircleImageView) findViewById(R.id.profileImgView);
         this.firstNoticeLayout = (LinearLayout) findViewById(R.id.firstNoticeLayout);
         this.announcementTxt = (TextView) findViewById(R.id.announcementTxt);
+        this.editProfileBtn = (Button) findViewById(R.id.editProfileBtn);
 
     }
 }
