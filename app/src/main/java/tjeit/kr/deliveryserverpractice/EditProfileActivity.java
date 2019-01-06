@@ -52,6 +52,7 @@ public class EditProfileActivity extends BaseActivity {
         bankSpinner.setAdapter(mBankSpinnerAdapter);
 
 
+
     }
 
     void getBanksFromServer(){
@@ -80,6 +81,8 @@ public class EditProfileActivity extends BaseActivity {
 
 
                         }
+
+                        mBankSpinnerAdapter.notifyDataSetChanged();
 
 
                     }
