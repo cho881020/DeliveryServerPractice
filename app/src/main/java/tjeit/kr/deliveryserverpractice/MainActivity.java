@@ -34,13 +34,12 @@ public class MainActivity extends BaseActivity {
     private TextView announcementTxt;
     private android.widget.LinearLayout firstNoticeLayout;
     private android.widget.Button editProfileBtn;
+    private Button apartBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         bindViews();
@@ -51,6 +50,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        apartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext,ApartListActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         editProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +76,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent= new Intent(mContext, NoticeListActivity.class);
+                Intent intent = new Intent(mContext, NoticeListActivity.class);
                 startActivity(intent);
             }
         });
@@ -137,10 +146,12 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bindViews() {
 
+        this.apartBtn = (Button) findViewById(R.id.apartBtn);
         this.editProfileBtn = (Button) findViewById(R.id.editProfileBtn);
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
         this.profileImgView = (CircleImageView) findViewById(R.id.profileImgView);
         this.firstNoticeLayout = (LinearLayout) findViewById(R.id.firstNoticeLayout);
         this.announcementTxt = (TextView) findViewById(R.id.announcementTxt);
+
     }
 }
