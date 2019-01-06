@@ -1,9 +1,16 @@
 package tjeit.kr.deliveryserverpractice;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 public class ApartListActivity extends BaseActivity {
+
+    MapFragment mapFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +28,21 @@ public class ApartListActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
 
+            }
+        });
     }
 
     @Override
     public void bindViews() {
+
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.map);
 
     }
 }
