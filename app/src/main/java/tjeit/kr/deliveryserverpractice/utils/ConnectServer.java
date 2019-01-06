@@ -218,4 +218,44 @@ public class ConnectServer {
         });
     }
 
+
+    public static void getRequestApartments(Context context, final JsonResponseHandler handler) {
+
+        OkHttpClient client = new OkHttpClient();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL + "apartment").newBuilder();
+
+        String requestUrl = urlBuilder.build().toString();
+        Log.d("요청URL", requestUrl);
+
+        Request request = new Request.Builder()
+                .header("X-Http-Token", ContextUtil.getToken(context))
+                .url(requestUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+                    if (handler != null) {
+                        handler.onResponse(json);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
 }
