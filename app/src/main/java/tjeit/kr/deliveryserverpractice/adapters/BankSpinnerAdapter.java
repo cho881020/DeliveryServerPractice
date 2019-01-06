@@ -70,7 +70,7 @@ public class BankSpinnerAdapter extends ArrayAdapter<Bank> {
         View row= convertView;
         if (row == null){
 
-            row = inf.inflate(R.layout.bank_spinner_list_item,null);
+            row = inf.inflate(R.layout.bank_spinner_selected_item,null);
 
 
         }
