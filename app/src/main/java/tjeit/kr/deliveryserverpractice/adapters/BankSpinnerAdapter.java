@@ -34,6 +34,7 @@ public class BankSpinnerAdapter extends ArrayAdapter<Bank> {
     }
 
 //    getDropDownView: 스피너에만 있는 부분
+//    리스트가 나올 때 모양
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
@@ -53,12 +54,13 @@ public class BankSpinnerAdapter extends ArrayAdapter<Bank> {
         return row;
     }
 
+//    선택이 됐을 때 모양
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
 
         if (row == null) {
-            row = inf.inflate(R.layout.bank_spinner_list_item, null);
+            row = inf.inflate(R.layout.bank_spinner_selected_item, null);
         }
 
         ImageView logoImg = row.findViewById(R.id.logoImg);
