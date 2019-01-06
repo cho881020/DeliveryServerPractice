@@ -12,10 +12,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import tjeit.kr.deliveryserverpractice.adapters.BankSpinnerAdapter;
 import tjeit.kr.deliveryserverpractice.datas.Bank;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class EditProfileActivity extends BaseActivity {
+
+    BankSpinnerAdapter mBankSpinnerAdapter;
 
     List<Bank> bankList = new ArrayList<Bank>();
 
@@ -44,6 +47,9 @@ public class EditProfileActivity extends BaseActivity {
 
 
         getBanksFromServer();
+
+        mBankSpinnerAdapter = new BankSpinnerAdapter(mContext, bankList);
+        bankSpinner.setAdapter(mBankSpinnerAdapter);
 
 
     }
