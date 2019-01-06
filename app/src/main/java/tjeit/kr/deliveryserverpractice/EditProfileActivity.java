@@ -9,10 +9,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import tjeit.kr.deliveryserverpractice.adapters.BankSpinnerAdapter;
 import tjeit.kr.deliveryserverpractice.datas.Bank;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class EditProfileActivity extends BaseActivity {
+
+    BankSpinnerAdapter mBankSpinnerAdapter;
+    List<Bank> bankList = new ArrayList<Bank>();
 
     private android.widget.Spinner bankSpinner;
     private android.widget.EditText accountNumberEdt;
@@ -36,6 +43,9 @@ public class EditProfileActivity extends BaseActivity {
 //        서버에서 은행 목록을 받아와서 Spinner에 뿌려주기.
         getBanksFromServer();
 
+        mBankSpinnerAdapter = new BankSpinnerAdapter(mContext, bankList);
+        bankSpinner.setAdapter(mBankSpinnerAdapter);
+
     }
 
     void getBanksFromServer() {
@@ -54,6 +64,7 @@ public class EditProfileActivity extends BaseActivity {
                             JSONObject bankJson = banks.getJSONObject(i);
                             Bank bank = Bank.getBankFromJson(bankJson);
 
+                            bankList.add(bank);
 
                         }
 
