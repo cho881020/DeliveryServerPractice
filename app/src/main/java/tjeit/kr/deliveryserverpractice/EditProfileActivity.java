@@ -39,11 +39,14 @@ public class EditProfileActivity extends BaseActivity {
 
     @Override
     public void setValues() {
-//        서버에서 은행 목록을 받아와서 Spinner에 뿌려주기.
-        getBankFromServer();
 
         mBankSpinnerAdapter = new BankSpinnerAdapter(mContext, bankList);
         bankSpinner.setAdapter(mBankSpinnerAdapter);
+
+
+//        서버에서 은행 목록을 받아와서 Spinner에 뿌려주기.
+        getBankFromServer();
+
 
     }
 
@@ -67,6 +70,8 @@ public class EditProfileActivity extends BaseActivity {
 
                             bankList.add(bank);
                         }
+
+                        mBankSpinnerAdapter.notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
