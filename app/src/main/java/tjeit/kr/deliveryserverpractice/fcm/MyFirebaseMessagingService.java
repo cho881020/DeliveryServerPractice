@@ -93,6 +93,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
         else {
 //            오레오 이전 안드로이드에 대한 코드
+//            채널 기능이 존재하지 않음. => 빌더만 만들어서 매니저를 통해 띄우면됨.
+            builder = new NotificationCompat.Builder(this);
+
+//            푸시알림 아이콘 설정
+            builder.setSmallIcon(R.drawable.ic_launcher_background);
+
+            builder.setContentTitle(remoteMessage.getNotification().getTitle());
+            builder.setContentText(remoteMessage.getNotification().getBody());
+
+            notificationManager.notify(0, builder.build());
+
         }
 
 
