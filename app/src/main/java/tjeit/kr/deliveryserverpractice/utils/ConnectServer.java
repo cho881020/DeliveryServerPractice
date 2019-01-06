@@ -165,12 +165,12 @@ public class ConnectServer  {
         OkHttpClient client = new OkHttpClient();
 //        이번에 사용하는 메쏘드는 GET
 
-        HttpUrl.Builder urlBuiler = HttpUrl.parse(serverURL+"announcement").newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL+"announcement").newBuilder();
 
 //        urlBuiler.addEncodedQueryParameter("from","2018-01-01");
 //        urlBuiler.addEncodedQueryParameter("to","2018-12-31");
 
-        String requestUrl = urlBuiler.build().toString();
+        String requestUrl = urlBuilder.build().toString();
         Log.d("요청URL",requestUrl);
 
         Request request = new Request.Builder()
@@ -205,14 +205,59 @@ public class ConnectServer  {
             }
         });
 
-
-
-
     }
+        public static void getRequestBank(Context context, final JsonResponseHandler handler){
+
+            OkHttpClient client = new OkHttpClient();
+//        이번에 사용하는 메쏘드는 GET
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL+"info/bank").newBuilder();
+
+//        urlBuiler.addEncodedQueryParameter("from","2018-01-01");
+//        urlBuiler.addEncodedQueryParameter("to","2018-12-31");
+
+            String requestUrl = urlBuilder.build().toString();
+            Log.d("요청URL",requestUrl);
+
+            Request request = new Request.Builder()
+                    .url(requestUrl)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+
+                    String body = response.body().string();
+                    try {
+                        JSONObject json = new JSONObject(body);
+
+                        if (handler != null){
+                            handler.onResponse(json);
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
 
 
 
+
+        }
 }
+
+
+
 
 
 
