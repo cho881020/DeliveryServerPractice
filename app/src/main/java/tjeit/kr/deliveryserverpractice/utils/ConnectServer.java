@@ -177,4 +177,45 @@ public class ConnectServer {
     }
 
 
+//    위에 getRequestNotice 복사해서 그대로 복붙 후 이름만 변경
+//    요청하는 파라미터가 없기 때문에 인자를 더 추가할 필요가 없음
+//    필요없는 내용은 지워버리면 됨
+    public static void getRequestBank(Context context, final JsonResponseHandler handler) {
+
+        OkHttpClient client = new OkHttpClient();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(serverURL + "info/bank").newBuilder();
+
+        String requestUrl = urlBuilder.build().toString();
+        Log.d("요청URL", requestUrl);
+
+        Request request = new Request.Builder()
+                .url(requestUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+                    if (handler != null) {
+                        handler.onResponse(json);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
 }
