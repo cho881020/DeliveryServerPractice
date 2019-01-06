@@ -62,14 +62,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             channelMessage.enableLights(true);
             channelMessage.setLightColor(Color.GREEN);
             channelMessage.enableVibration(true);
-            channelMessage.setVibrationPattern(new long[]{}1,1000);
+            channelMessage.setVibrationPattern(new long[]{1,1000});
 
             Uri defaultUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
 
 
-                    channelMessage.setSound(defaultUri.null);
-
+            channelMessage.setSound(defaultUri, null);
                     channelMessage.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
 
 
@@ -92,7 +91,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }else{
 //            오레오 이전에 대한 코드
 
+//            채널기능 존재하지않음=> 빌더만 만들어서 매니저를 통해 띄우기
+            builder = new NotificationCompat.Builder(this);
 
+//푸시 알림 아이콘 설정
+            builder.setSmallIcon(R.drawable.ic_launcher_background);
+
+            builder.setContentTitle(remoteMessage.getNotification().getTitle());
+            builder.setContentText(remoteMessage.getNotification().getBody());
+
+            notificationManager.notify(0, builder.build());
 
 
         }
