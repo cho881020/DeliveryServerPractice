@@ -9,10 +9,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tjeit.kr.deliveryserverpractice.datas.Bank;
 import tjeit.kr.deliveryserverpractice.utils.ConnectServer;
 
 public class EditProfileActivity extends BaseActivity {
+
+    List<Bank> bankList = new ArrayList<Bank>();
 
     private android.widget.Spinner bankSpinner;
     private android.widget.EditText accountNumberEdt;
@@ -52,6 +57,8 @@ public class EditProfileActivity extends BaseActivity {
                         for (int i = 0; i<banks.length(); i++) {
                             JSONObject bankJson = banks.getJSONObject(i);
                             Bank bank =  Bank.getBankFromJson(bankJson);
+
+                            bankList.add(bank);
                         }
                     }
                 } catch (JSONException e) {
